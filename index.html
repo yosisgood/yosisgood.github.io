@@ -1,0 +1,717 @@
+​
+ 
+
+<html>
+<head>
+ 
+</head>
+<body>
+<script>
+function clickEffect() {
+  let balls = [];
+  let longPressed = false;
+  let longPress;
+  let multiplier = 0;
+  let width, height;
+  let origin;
+  let normal;
+  let ctx;
+  const colours = ["#F73859", "#14FFEC", "#00E0FF", "#FF99FE", "#FAF15D"];
+  const canvas = document.createElement("canvas");
+  document.body.appendChild(canvas);
+  canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 99999; position: fixed; pointer-events: none;");
+  const pointer = document.createElement("span");
+  pointer.classList.add("pointer");
+  document.body.appendChild(pointer);
+ 
+  if (canvas.getContext && window.addEventListener) {
+    ctx = canvas.getContext("2d");
+    updateSize();
+    window.addEventListener('resize', updateSize, false);
+    loop();
+    window.addEventListener("mousedown", function(e) {
+      pushBalls(randBetween(10, 20), e.clientX, e.clientY);
+      document.body.classList.add("is-pressed");
+      longPress = setTimeout(function(){
+        document.body.classList.add("is-longpress");
+        longPressed = true;
+      }, 500);
+    }, false);
+    window.addEventListener("mouseup", function(e) {
+      clearInterval(longPress);
+      if (longPressed == true) {
+        document.body.classList.remove("is-longpress");
+        pushBalls(randBetween(50 + Math.ceil(multiplier), 100 + Math.ceil(multiplier)), e.clientX, e.clientY);
+        longPressed = false;
+      }
+      document.body.classList.remove("is-pressed");
+    }, false);
+    window.addEventListener("mousemove", function(e) {
+      let x = e.clientX;
+      let y = e.clientY;
+      pointer.style.top = y + "px";
+      pointer.style.left = x + "px";
+    }, false);
+  } else {
+    console.log("canvas or addEventListener is unsupported!");
+  }
+ 
+ 
+  function updateSize() {
+    canvas.width = window.innerWidth * 2;
+    canvas.height = window.innerHeight * 2;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.scale(2, 2);
+    width = (canvas.width = window.innerWidth);
+    height = (canvas.height = window.innerHeight);
+    origin = {
+      x: width / 2,
+      y: height / 2
+    };
+    normal = {
+      x: width / 2,
+      y: height / 2
+    };
+  }
+  class Ball {
+    constructor(x = origin.x, y = origin.y) {
+      this.x = x;
+      this.y = y;
+      this.angle = Math.PI * 2 * Math.random();
+      if (longPressed == true) {
+        this.multiplier = randBetween(14 + multiplier, 15 + multiplier);
+      } else {
+        this.multiplier = randBetween(6, 12);
+      }
+      this.vx = (this.multiplier + Math.random() * 0.5) * Math.cos(this.angle);
+      this.vy = (this.multiplier + Math.random() * 0.5) * Math.sin(this.angle);
+      this.r = randBetween(8, 12) + 3 * Math.random();
+      this.color = colours[Math.floor(Math.random() * colours.length)];
+    }
+    update() {
+      this.x += this.vx - normal.x;
+      this.y += this.vy - normal.y;
+      normal.x = -2 / window.innerWidth * Math.sin(this.angle);
+      normal.y = -2 / window.innerHeight * Math.cos(this.angle);
+      this.r -= 0.3;
+      this.vx *= 0.9;
+      this.vy *= 0.9;
+    }
+  }
+ 
+  function pushBalls(count = 1, x = origin.x, y = origin.y) {
+    for (let i = 0; i < count; i++) {
+      balls.push(new Ball(x, y));
+    }
+  }
+ 
+  function randBetween(min, max) {
+    return Math.floor(Math.random() * max) + min;
+  }
+ 
+  function loop() {
+    ctx.fillStyle = "rgba(255, 255, 255, 0)";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < balls.length; i++) {
+      let b = balls[i];
+      if (b.r < 0) continue;
+      ctx.fillStyle = b.color;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2, false);
+      ctx.fill();
+      b.update();
+    }
+    if (longPressed == true) {
+      multiplier += 0.2;
+    } else if (!longPressed && multiplier >= 0) {
+      multiplier -= 0.4;
+    }
+    removeBall();
+    requestAnimationFrame(loop);
+  }
+ 
+  function removeBall() {
+    for (let i = 0; i < balls.length; i++) {
+      let b = balls[i];
+      if (b.x + b.r < 0 || b.x - b.r > width || b.y + b.r < 0 || b.y - b.r > height || b.r < 0) {
+        balls.splice(i, 1);
+      }
+    }
+  }
+}
+clickEffect();//调用特效函数
+</script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<title>YOS官方网站</title>
+		
+	</head>
+	<body>
+		
+		<!-- YOS官方网站 -->
+		<script src="js/jquery-2.2.0.min.js"></script>
+		<script>
+			var a_idx = 0;
+			jQuery(document).ready(function($) {
+				addTips = function(e) {
+					var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+					var i = $("<span />").text(a[a_idx]);
+					a_idx = (a_idx + 1) % a.length;
+					var x = e.pageX,
+						y = e.pageY;
+					i.css({
+						"z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+						"top": y - 20,
+						"left": x,
+						"position": "absolute",
+						"font-weight": "bold",
+						"color": "#ff6651"
+					});
+ 
+					$("body").append(i);
+					i.animate({
+						"top": y - 180,
+						"opacity": 0
+					}, 1500, function() {
+						i.remove()
+					})
+					return false;
+				}
+				//绑定鼠标左键
+				$("body").click(addTips);
+				//绑定鼠标左键
+				$("body").bind("contextmenu", addTips)
+			});
+		</script>
+		<script>
+			function o(w, v, i) {
+				return w.getAttribute(v) || i
+			}
+ 
+			function j(i) {
+				return document.getElementsByTagName(i)
+			}
+ 
+			function l() {
+				var i = j("script"),
+					w = i.length,
+					v = i[w - 1];
+				return {
+					l: w,
+					z: o(v, "zIndex", -1),
+					o: o(v, "opacity", 0.5),
+					c: o(v, "color", "0,0,0"),
+					n: o(v, "count", 99)
+				}
+			}
+ 
+			function k() {
+				r = u.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+					n = u.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+			}
+ 
+			function b() {
+				e.clearRect(0, 0, r, n);
+				var w = [f].concat(t);
+				var x, v, A, B, z, y;
+				t.forEach(function(i) {
+					i.x += i.xa,
+						i.y += i.ya,
+						i.xa *= i.x > r || i.x < 0 ? -1 : 1,
+						i.ya *= i.y > n || i.y < 0 ? -1 : 1,
+						e.fillRect(i.x - 0.5, i.y - 0.5, 1, 1);
+					for (v = 0; v < w.length; v++) {
+						x = w[v];
+						if (i !== x && null !== x.x && null !== x.y) {
+							B = i.x - x.x, z = i.y - x.y, y = B * B + z * z;
+							y < x.max && (x === f && y >= x.max / 2 && (i.x -= 0.03 * B, i.y -= 0.03 * z), A = (x.max -
+									y) / x.max, e.beginPath(), e.lineWidth = A / 2, e.strokeStyle = "rgba(" + s.c +
+								"," + (A + 0.2) + ")", e.moveTo(i.x, i.y), e.lineTo(x.x, x.y), e.stroke())
+						}
+					}
+					w.splice(w.indexOf(i), 1)
+				}), m(b)
+			}
+			var u = document.createElement("canvas"),
+				s = l(),
+				c = "c_n" + s.l,
+				e = u.getContext("2d"),
+				r, n,
+				m = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame ||
+				window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(i) {
+					window.setTimeout(i, 1000 / 45)
+				},
+				a = Math.random,
+				f = {
+					x: null,
+					y: null,
+					max: 20000
+				};
+			u.className = "particle_canvas";
+			var browserName = navigator.userAgent.toLowerCase();
+			if (/msie/i.test(browserName) && !/opera/.test(browserName)) {
+				u.className += ' ie10_gte';
+			};
+			u.id = c;
+			u.style.cssText = "position:fixed;top:0;left:0;z-index:" + s.z + ";opacity:" + s.o;
+			j("body")[0].appendChild(u);
+			k(), window.onresize = k;
+			window.onmousemove = function(i) {
+					i = i || window.event,
+						f.x = i.clientX,
+						f.y = i.clientY
+				},
+				window.onmouseout = function() {
+					f.x = null,
+						f.y = null
+				};
+			for (var t = [], p = 0; s.n > p; p++) {
+				var h = a() * r,
+					g = a() * n,
+					q = 2 * a() - 1,
+					d = 2 * a() - 1;
+				t.push({
+					x: h,
+					y: g,
+					xa: q,
+					ya: d,
+					max: 6000
+				})
+			}
+			setTimeout(function() {
+				b()
+			}, 100)
+		</script>
+		
+		
+		<!-- 背景效果 -->
+		<style>
+			.github-corner:hover .octo-arm {
+				animation: octocat-wave 560ms ease-in-out
+			}
+ 
+			@keyframes octocat-wave {
+ 
+				0%,
+				100% {
+					transform: rotate(0)
+				}
+ 
+				20%,
+				60% {
+					transform: rotate(-25deg)
+				}
+ 
+				40%,
+				80% {
+					transform: rotate(10deg)
+				}
+			}
+ 
+			@media (max-width:500px) {
+				.github-corner:hover .octo-arm {
+					animation: none
+				}
+ 
+				.github-corner .octo-arm {
+					animation: octocat-wave 560ms ease-in-out
+				}
+			}
+		</style>
+ 
+	</body>
+</html>
+ 
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>哈哈哈</title>
+<style>
+			body{
+				background-size: 100% ;
+			}
+		</style>
+	</head>
+	<body background="img1.jpg" >
+<body>
+
+<p></p>
+	<button onclick="myFunction()">登录</button>
+<p id="demo"></p>
+<script>
+
+function myFunction(){
+		
+	var x;
+	var person=prompt("1、请输入你的名字","Harry Potter");
+	var person=prompt("2、请输入的电子邮箱","比如：some@example.com");
+	alert("确认？？？");
+	if (person!=null && person!=""){
+	    x="你好 " + "未命名" + "! 今天感觉如何?";
+		document.getElementById("demo").innerHTML=x;
+
+	}
+}
+</script>
+	
+	
+<button onclick="myFunction()">改名</button>
+<p id="demo"></p>
+<script>
+function myFunction(){
+	var person=prompt("1、请输入你的名字","Harry Potter");
+	var person=prompt("2、请输入的电子邮箱","比如：some@example.com");
+	alert("确认？？？");
+	if (person!=null && person!=""){
+	    x="你好 " + "未命名" + "! 今天感觉如何?";
+		document.getElementById("demo").innerHTML=x;
+
+	}
+	while(1){
+		var x;
+		var mt=prompt("输入新的名字");
+		var person=prompt("再次输入");
+		alert("确认？？？");
+		if (person!=mt ){
+			alert("两次不一致！");
+		}else{
+			alert("成功！");
+			break;
+		}
+	}
+	if (person!=null && person!=""){
+	    x="你好 " + person + "! 今天感觉如何?";
+		document.getElementById("demo").innerHTML=x;
+
+	}
+	
+}
+</script>
+</body>
+</html>
+
+<html lang="zh-CN" dir="ltr">
+
+<head>
+<link rel="shortcut icon" href="1.png" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <title>自定义的起始页</title>
+<link rel="icon" href="1.png" sizes="16x16">
+    <link rel="stylesheet" href="beginPageCss1.css" type="text/css">
+    <style>
+        *{
+          /* 清除所有的padding、margin和border */
+          margin: 0;
+          padding: 0;
+          border: 0;
+        }
+        body {
+          background: url(https://i.328888.xyz/2022/12/28/UmpFZ.png);
+background-size: cover;
+
+width: 100%;
+          /* 长按鼠标并滑动的时候回选中框内的内容，这里禁止选中所有文本。 */
+          -moz-user-select:none;/*火狐*/
+          -webkit-user-select:none;/*webkit浏览器*/
+          -ms-user-select:none;/*IE10*/
+          -khtml-user-select:none;/*早期浏览器*/
+          user-select:none;
+        }
+        
+        /*
+         * 以下是背景盒子的属性设置
+         */
+        
+        /* 两个盒子的属性主要是为了进行定位 */
+        .backgroundBox1 {
+          background-color: inherit;
+          width: 600px;
+          height: 400px;
+          position: absolute;
+          left: 50%;
+          margin-left: -300px;
+          top: 50%;
+          margin-top: -200px;
+        }
+        .backgroundBox2 {
+          background-color: inherit;
+          width: inherit;
+          height: inherit;
+          position: relative;
+        }
+        
+        /*
+         * 以下是有关的搜索框的布局
+         */
+        
+        #backgroundFormStyle {
+          position: relative;
+          height: 20%;
+          width: inherit;
+        }
+        #searchForm {
+          /* 搜索框的属性设置 */
+          position: absolute;
+          width: 500px;
+          height: 40px;
+          /* 盒子居中 */
+          top: 50%;
+          margin-top: -20px;
+          left: 50%;
+          margin-left: -250px;
+          /* 圆角属性，可以根据自己的喜好调节，50%盒子就是个圆形 */
+
+	background: rgba(29,29,31,0.72);
+	backdrop-filter: saturate(180%) blur(20px);
+          border-radius: 50px;
+          /* 两个阴影属性，做出凸起的效果。 */
+          /* 第一个阴影为白色，向左和上移动。 */
+          /* 第二个阴影为黑色，向右和下移动。 */
+          /* 参数分别为：x方向偏移 y方向偏移 阴影模糊半径 颜色 */
+          box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.2),
+           -12px -12px 20px rgba(255, 255, 255, 1);
+        }
+        /* 注意：这里是搜索框的样式，和网站入口按钮不同，没有鼠标悬停点击等状态效果。 */
+        #searchInput {
+          width: 90%;
+          height: inherit;
+          margin-left: 20px;
+          background-color: inherit;
+          /* outline用来清除点击搜索框的时候出现一个黑色小边框 */
+          outline: none;
+        }
+        #confirmInput {
+          /* 把确认按钮变成黑色边框小圆圈 */
+          width: 10%;
+          height: 20px;
+          width: 20px;
+          background-color: ;
+          position: absolute;
+          right: 20;
+          top: 50%;
+          margin-top: -10px;
+          border-radius: 40%;
+          border-color: grey;
+          border-width: thick;
+          border-style: solid;
+          outline: none;
+        }
+        #confirmInput:hover {
+          /* 鼠标悬停到确认按钮上变成小手手 */
+          cursor: pointer;
+        }
+        
+        /*
+         * 下面是关于网站入口的按钮布局
+         */
+        
+        .iconBackBoxAll {
+          position: absolute;
+          /* 横向居中 */
+          left: 50%;
+          margin-left: -240px;
+          bottom: 0;
+          width: 480px;
+          height: 70%;
+        }
+        .iconBackBoxAll>a {
+background: rgba(29,29,31,0.72);
+backdrop-filter: saturate(180%) blur(20px);
+          position: relative;
+          /* 使用左浮动来布局，如果您的网站入口不是8个，建议另外进行布局 */
+          float: left;
+          width: 80px;
+          height: 80px;
+          margin: 20px;
+          border-radius: 20%;
+          box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.2),
+           -12px -12px 20px rgba(255, 255, 255, 1);
+          /* 小手手 */
+          cursor: pointer;
+          /* 动画，阴影过度，做出一个纸面下凹的效果。 */
+          /* 参数：需要改变的样式（all是所有）  改变的时间  速度函数 */
+          /* 注意注意注意！！！！
+           * 这里必须填写速度函数，即便默认曲线就是ease，我也没搞清楚为啥。
+           * 后面需要从外阴影过渡到内阴影。在测试的时候，如果不写速度函数曲线没有效果。
+           * 其他样式，比如改变盒子宽高颜色没啥问题。希望有大佬帮忙解答一下原因。
+           */
+          transition: all .2s ease;
+        }
+        .iconBackBoxAll>a img {
+          /* 图片定位 */
+          position: absolute;
+          width: 46px;
+          height: 46px;
+          top: 50%;
+          margin-top: -30px;
+          left: 50%;
+          margin-left: -23px;
+        }
+        .iconBackBox>div {
+          /* 文本定位 */
+          position: absolute;
+          width: 60px;
+          bottom: 5px;
+          left: 50%;
+          margin-left: -30px;
+          text-align: center;
+        }
+        .iconBackBox>div p {
+          /* 文本样式 */
+          color: #6B6B6B;
+          font-size: 12px;
+        }
+        
+        /*
+         * 下面是关于网站入口的伪类选择器
+         */
+        
+        .iconBackBoxAll>a:hover {
+          /* 这里改变盒子阴影 */
+          /*
+           * 四个参数：
+           * 前两个是黑白阴影从外阴影过渡到没有阴影
+           * 后连个是黑白阴影从没有阴影过渡到内阴影
+           */
+          box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2),
+           0px 0px 0px rgba(255, 255, 255, 1),
+          12px 12px 20px rgba(0, 0, 0, 0.2) inset,
+           -12px -12px 20px rgba(255, 255, 255, 1) inset;
+        }
+        .iconBackBoxAll>a:active {
+          /* 点击时改变样式，加深效果 */
+           box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2) inset,
+            -10px -10px 30px rgba(255, 255, 255, 1) inset;
+        }
+        
+        
+        /*
+         * 下面是对于增加和删除按钮的属性设置
+         */
+        
+         /* 这里两个按钮没有功能，在删除html文件中的两个按钮的同时，可以选择删除这里的样式 */
+         /* 具体的思路和网站入口一样 */
+        .setButtonBox {
+          /* background-color: red; */
+          position: fixed;
+          right: 100px; bottom: 50px;
+        }
+        .setButtonBox button{
+          width: 40px;
+          height: 40px;
+          margin: 15px;
+          border-radius: 50%;
+          box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.2),
+           -12px -12px 20px rgba(255, 255, 255, 1);
+          cursor: pointer;
+          outline: none;
+          transition: all .2s ease;
+        }
+        #addBut {
+          background-image: url(icon/addButton.png);
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+        .setButtonBox button:hover{
+          box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2),
+           0px 0px 0px rgba(255, 255, 255, 1),
+          12px 12px 20px rgba(0, 0, 0, 0.2) inset,
+           -12px -12px 20px rgba(255, 255, 255, 1) inset;
+        }
+        #deleteBut {
+          background-image: url(icon/delete.png);
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="backgroundBox1">
+        <div class="backgroundBox2">
+            <!-- backgroundFormStyle盒子里面放的是整个搜索框 -->
+            <!-- 这里使用百度搜索引擎。 -->
+            <div id="backgroundFormStyle">
+                <form action="https://www.baidu.com.cn/s" method="get" target="_parent" id="searchForm">
+                    <input type="hidden" name="hiddenInput" value="3">
+                    <input type="text" name="wd" placeholder="百度搜索：" id="searchInput" autocomplete="off">
+                    <input type="submit" value="" id="confirmInput">
+                    <!-- 确定按钮简化为一个小圆圈。 -->
+                </form>
+            </div>
+            <div class="iconBackBoxAll">
+                <!-- 每一个网站入口包含两个信息，图片和名称。 -->
+                <!-- 在href中填写网站的地址，p标签中填写名字。 -->
+                <!-- 不涉及JavaScript的话，建议使用a标签实现链接。 -->
+                <a class="iconBackBox" href="https://www.bilibili.com/">
+                    <img src="1.jfif" alt="">
+                    <!-- src是图片的地址，alt是图片无法显示时的文字 -->
+                    <div>
+                        <p>bilibili</p>
+                    </div>
+                </a>
+                <a class="iconBackBox" href="https://github.com/">
+                    <img src="2.png" alt="">
+                    <div>
+                        <p>github</p>
+                    </div>
+                </a>
+                <a class="iconBackBox" href="https://www.csdn.net/">
+                    <img src="3.png" alt="">
+                    <div>
+                        <p>不告诉你</p>
+                    </div>
+                </a>
+                <a class="iconBackBox" href="https://www.iconfont.cn/">
+                    <img src="4.png" alt="">
+                    <div>
+                        <p>不告诉你</p>
+                    </div>
+                </a>
+                <a class="iconBackBox" href="https://www.aliyun.com/">
+                    <img src="5.png" alt="">
+                    <div>
+                        <p>阿里云</p>
+                    </div>
+                </a>
+                <a class="iconBackBox" href="https://www.cnki.net/">
+                    <img src="6.gif" alt="">
+                    <div>
+                        <p>不告诉你</p>
+                    </div>
+                </a>
+                <a class="iconBackBox" href="https://leetcode-cn.com/">
+                    <img src="7.gif" alt="">
+                    <div>
+                        <p>不告诉你</p>
+                    </div>
+                </a>
+                <a class="iconBackBox" href="https://office.com">
+                    <img src="8.png" alt="">
+                    <div>
+                        <p>微软</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- 下面是添加和删除的按钮，这里暂未实现功能，先放这里配个像。不想要可以删除 -->
+
+    <!-- 以下是JavaScript文件 （还没写）-->
+
+
+</body>
+
+</html>
+
