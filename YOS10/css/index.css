@@ -1,0 +1,311 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li,
+dl,
+dt,
+dd,
+input {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font: 16px/1.5 "Helvetica Neue", Helvetica Arial, "Miccrosoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  color: #333;
+}
+ul,
+ol {
+  list-style: none;
+}
+em,
+i {
+  font-size: normal;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+img {
+  border: none;
+  outline: none;
+  color: #333;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+}
+.clearfix::after {
+  clear: both;
+}
+body {
+  background-image: url(../images/desktop.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.nothing {
+  height: 100%;
+}
+.taskBar {
+  background-color: #d3e2eb;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+}
+.taskBar .search {
+  margin-left: 60px;
+  position: relative;
+  height: 50px;
+  width: 432px;
+  background-color: #ffffff;
+  border: 1px solid #bdbcbc;
+  box-sizing: border-box;
+}
+.taskBar .search input {
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 382px;
+  border: 0;
+  margin-left: 8px;
+  outline: medium;
+  color: #3f3f3f;
+}
+.taskBar .search i {
+  width: 50px;
+  font-size: 27px;
+  margin: auto ;
+  margin-left: 10px;
+}
+.taskBar .search:hover {
+  border: 3px solid #b4b4b4;
+}
+.taskBar .cortnan {
+  width: 63px;
+}
+.taskBar .cortnan span {
+  display: block;
+  font-size: 30px;
+  line-height: 50px;
+  text-align: center;
+  text-shadow: 1px 1px 2px;
+}
+.taskBar .cortnan:hover {
+  background-color: #e5eff4;
+}
+.taskBar .mask {
+  width: 63px;
+  left: 0;
+}
+.taskBar .mask span {
+  display: block;
+  font-size: 24px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
+}
+.taskBar .mask div {
+  width: 14px;
+  height: 100%;
+}
+.taskBar .mask span:hover {
+  background-color: #e5eff4;
+}
+.taskBar .date {
+  width: 63px;
+  left: 0;
+}
+.taskBar .date span {
+  margin-top: auto;
+  height: 50px;
+}
+.taskBar .date span :nth-child(1) {
+  display: block;
+  font-size: 10px;
+  height: 25px;
+  text-align: center;
+}
+.taskBar .date span :nth-child(2) {
+  margin-top: 0;
+  font-size: 10px;
+  text-align: center;
+  height: 25px;
+}
+.taskBar .date:hover {
+  background-color: #e5eff4;
+}
+.taskBar .display {
+  width: 7px;
+  box-sizing: border-box;
+  border-left: 1px solid #bdbcbc;
+}
+.taskBar .display:hover {
+  background-color: #e5eff4;
+}
+.taskBar .word {
+  width: 30px;
+  left: 0;
+  display: block;
+  font-size: 20px;
+  line-height: 50px;
+  text-align: center;
+}
+.taskBar .word:hover {
+  background-color: #e5eff4;
+}
+.taskBar .net {
+  width: 30px;
+  left: 0;
+}
+.taskBar .net:hover {
+  background-color: #e5eff4;
+}
+.taskBar .cell {
+  width: 30px;
+  left: 0;
+}
+.taskBar .cell:hover {
+  background-color: #e5eff4;
+}
+.taskBar .qq {
+  width: 30px;
+  left: 0;
+}
+.taskBar .qq:hover {
+  background-color: #e5eff4;
+}
+.apply {
+  width: 850px;
+  height: 500px;
+  background-color: #ededed;
+  position: fixed;
+  bottom: 50px;
+  left: 60px;
+  box-shadow: 0px 0px 7.1px;
+  display: none;
+}
+.apply .nav {
+  height: 60px;
+  background-color: #e4e4e4;
+  border-bottom: 2px solid #e0e0e0;
+}
+.apply ul li {
+  float: left;
+  height: 60px;
+  width: 52px;
+  line-height: 60px;
+  font-size: 15px;
+  color: #59595a;
+  text-align: center;
+  cursor: context-menu;
+}
+.apply ul :nth-child(1) {
+  margin-left: 10px;
+  border-bottom: 3px solid #0078d7;
+  color: #060606;
+}
+.apply ul li:hover {
+  color: #060606;
+}
+.apply .menu {
+  display: none;
+  width: 170px;
+  height: 212px;
+  background-color: #f3f3f3;
+  margin-left: 218px;
+  position: fixed;
+  top: 265px;
+  border: 1.5px solid #c2c2c2;
+}
+.apply .menu div {
+  height: 42.4px;
+}
+.apply .menu div span {
+  line-height: 42.4px;
+  margin-left: 20px;
+}
+.apply .menu div:hover {
+  background-color: #dbdbdb;
+}
+.apply .contain .popular p {
+  margin-left: 20px;
+  margin-top: 25px;
+}
+.apply .contain .popular .box {
+  display: flex;
+  justify-content: space-evenly;
+}
+.apply .contain .popular .box div {
+  margin-top: 15px;
+  height: 80px;
+  width: 150px;
+  background-color: #f4f4f4;
+  border-radius: 3px;
+}
+.apply .contain .popular .box div p {
+  text-align: center;
+  margin: 0;
+  color: #060606;
+}
+.apply .contain .popular .box div img {
+  text-align: center;
+}
+.apply .contain .popular .box div:hover {
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 10px #d7d7d7;
+}
+.apply .contain .popular span {
+  width: 401px;
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.apply .contain .popular #box div {
+  width: 396px;
+  height: 46px;
+  float: left;
+  margin-left: 20px;
+}
+.apply .contain .popular #box div:hover {
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 10px #d7d7d7;
+  border-bottom: 0;
+}
+.apply .contain .popular #box :nth-child(1) {
+  border-bottom: 2px solid #e0e0e0;
+  margin-top: 10px;
+}
+.apply .contain .popular #box :nth-child(2) {
+  border-bottom: 2px solid #e0e0e0;
+  margin-top: 10px;
+}
+.apply .partOne {
+  display: none;
+}
+.apply .contain .box img {
+  height: 50px;
+  width: 75px;
+  margin-left: 30px;
+  margin-top: 0;
+}
+.apply .partTwo {
+  display: none;
+}
+.apply .partThree {
+  display: none;
+}

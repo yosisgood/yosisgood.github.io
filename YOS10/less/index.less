@@ -1,0 +1,289 @@
+@import './base';
+@import './comon';
+.nothing{
+    height: 100%;
+}
+.taskBar{
+    
+    // margin-bottom: 0px;
+    background-color: rgb(211,226,235);
+    height: 50px;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+
+
+    .search{
+
+        margin-left: 60px;
+        position: relative;
+        height: 50px;
+        width: 432px;
+        background-color: rgb(255,255,255);
+        border: 1px solid rgb(189, 188, 188);
+        box-sizing: border-box;
+       input{
+       font-size: 20px;
+       position: absolute;
+       top: 0;
+       height: 100%;
+       width: 382px;
+       border: 0;
+       margin-left: 8px;
+       outline: medium;
+       color: rgb(63, 63, 63);
+       }
+        
+        i{
+            width: 50px;
+            font-size: 27px;
+            margin: auto ;
+            margin-left: 10px;
+        }
+      
+    }
+    .search:hover{
+        border: 3px solid rgb(180,180,180);
+    }
+    .cortnan{
+        width: 63px;
+        span{
+            display: block;
+            font-size: 30px;
+            line-height: 50px;
+            text-align: center;
+            text-shadow: 1px 1px 2px;
+        }
+        
+    }
+    .cortnan:hover{
+        background-color: rgb(229,239,244);
+    }
+    .mask{
+        width: 63px;
+        // right: 0;
+        left: 0;
+        span{
+            display: block;
+            font-size: 24px;
+            line-height: 50px;
+            text-align: center;
+            width: 50px;
+        }
+        div{
+            width: 14px;
+            height: 100%;
+        }
+        span:hover{
+            background-color: rgb(229,239,244);
+        }
+    }
+    
+    .date{
+        width: 63px;
+        // right: 0;
+        left: 0;
+        
+        span{
+           margin-top: auto;
+           height: 50px;
+            :nth-child(1){
+                display: block;
+                font-size: 10px;
+                height: 25px;
+                text-align: center;
+            }
+            :nth-child(2){
+                margin-top: 0;
+                font-size: 10px;
+                text-align: center;
+                height: 25px;
+            }
+        }
+    }
+    
+    .date:hover{
+        background-color: rgb(229,239,244);
+    }
+    .display{
+        width: 7px;
+        box-sizing: border-box;
+        border-left: 1px solid rgb(189, 188, 188);
+    }
+    .display:hover{
+        background-color: rgb(229,239,244);
+    }
+    .word{
+        width: 30px;
+        // right: 0;
+        left: 0;
+        
+            display: block;
+            font-size: 20px;
+            line-height: 50px;
+            text-align: center;
+    }
+    .word:hover{
+        background-color: rgb(229,239,244);
+    }
+    .net{
+        width: 30px;
+        // right: 0;
+        left: 0;
+        
+        
+    }
+    .net:hover{
+        background-color: rgb(229,239,244);
+    }
+    .cell{
+        width: 30px;
+        // right: 0;
+        left: 0;
+        
+        
+    }
+    .cell:hover{
+        background-color: rgb(229,239,244);
+    }
+    .qq{
+        width: 30px;
+        // right: 0;
+        left: 0;
+        
+        
+    }
+    .qq:hover{
+        background-color: rgb(229,239,244);
+    }
+   
+}
+.apply{
+    width:850px;
+    height:500px;
+    background-color:rgb(237,237,237);
+    position: fixed;
+    bottom: 50px;
+    left: 60px;
+    box-shadow: 0px 0px 7.1px;
+    display: none;
+    .nav{
+        height: 60px;
+        background-color:rgb(228,228,228);
+        border-bottom: 2px solid rgb(224,224,224);
+    }
+    ul li{
+        float: left;
+        height: 60px;
+        width: 52px;
+        line-height: 60px;
+        font-size: 15px;
+        color: #59595a;
+        text-align: center;
+        cursor: context-menu;
+        
+    }
+    ul :nth-child(1) {
+        margin-left: 10px;
+        border-bottom: 3px solid rgb(0,120,215);
+        color: #060606;
+    }
+    ul li:hover{
+        color:#060606 ;
+    }
+    .menu{
+        display:none;
+        width: 170px;
+        height: 212px;
+        background-color:rgb(243,243,243) ;
+        margin-left: 10+52*4px;
+        position: fixed;
+        top: 150+208-100+4+4-1px;
+        border: 1.5px solid rgb(194,194,194);
+        div{
+            height: 42.4px;
+            
+            span{
+                line-height: 42.4px;
+                margin-left: 20px;
+            }
+        }
+        div:hover{
+            background-color:rgb(219,219,219) ;
+        }
+    }
+    .contain .popular p{
+        margin-left: 20px;
+        margin-top: 25px;
+
+    }
+    .contain .popular .box{
+        display: flex;
+        justify-content: space-evenly;
+        div{
+          
+            margin-top: 15px;
+            height: 80px;
+            width: 150px;
+            background-color: rgb(244,244,244);
+            border-radius: 3px;
+            p{
+                text-align: center;
+                margin:0;
+                color: rgb(6,6,6);
+            }
+            img{
+                text-align: center;
+            }
+        }
+        div:hover{
+            background-color: rgb(249,249,249);
+            box-shadow: 0 5px 10px rgb(215,215,215);
+        }
+
+    }
+    .contain .popular span{
+        width: (850/2)-24px;
+        float: left;
+        margin-left: 20px;
+        margin-top: 20px;
+       }
+       .contain .popular #box div{
+           width:(850/2)-24-5px;
+           height: 46px;
+        //    background-color: rgb(97, 58, 58) ;
+           float: left;
+           margin-left: 20px;
+         
+       }
+       .contain .popular #box div:hover{
+        background-color: rgb(249,249,249);
+        box-shadow: 0 5px 10px rgb(215,215,215);
+        border-bottom: 0;
+       }
+       .contain .popular #box :nth-child(1){
+        border-bottom: 2px solid rgb(224,224,224);
+           margin-top: 10px;
+       }
+       .contain .popular #box :nth-child(2){
+        border-bottom: 2px solid rgb(224,224,224);
+        margin-top: 10px;
+    }
+    .partOne{
+        display: none;
+    }
+    .contain .box img{
+        height: 50px;
+        width: 75px;
+        margin-left: 30px;
+        margin-top: 0;
+    }
+     .partTwo{
+        display: none;
+    }
+    .partThree{
+        display: none;
+    }
+
+    }
