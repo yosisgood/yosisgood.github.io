@@ -1,0 +1,257 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="shortcut icon" href="https://yos-is-good.netlify.app/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-01-04%20141051.png">
+	<meta charset="utf-8">
+	<style>
+		body{
+			width: 100%;
+			height: 1000px;
+			background: linear-gradient(to bottom right, #000, #2073c2 60%, #dff6ff);
+			overflow: hidden;
+		}
+		span{
+			display: block;
+			position: absolute;
+			border-radius: 50%;
+			box-shadow: 0.4px 0.4px 0.4px 0px #fff;
+		}
+	</style>
+</head>
+<body>
+ <span style="cursor: url(Arrow.cur');">，</span>
+<script>
+
+	window.onload = function(){
+		var screenW = document.documentElement.clientWidth;
+		var screenH = document.documentElement.clientHeight;
+		var colorArr = ['#fff','skyblue','orange'];
+		console.log(screenW);
+		for( var i=0; i<800; i++ ){
+			var span = document.createElement('span');
+			var width = Math.random() * 3;
+			var colorIndex = parseInt(Math.random() * 3);
+			var x = parseInt(Math.random() * screenW);
+			var y = parseInt(Math.random() * screenH);
+			span.style.width = parseInt(width) + 'px';
+			span.style.height = parseInt(width) + 'px';
+			span.style.background = colorArr[colorIndex];
+			span.style.left = x + 'px';
+			span.style.top = y + 'px';
+ 
+			document.body.appendChild(span);
+		}
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ 
+<body>
+    <!--光标特效仙女棒-->
+    <script src="https://blog-static.cnblogs.com/files/axqa/fairyDustCursor.js"></script>
+    <!--光标之泡泡-->
+    <script src="https://blog-static.cnblogs.com/files/axqa/bubbleCursor.js"></script>
+    <!--笑脸-->
+    <script src="https://blog-static.cnblogs.com/files/axqa/emojiCursor.js"></script>
+    <!--雪花-->
+    <script src="https://blog-static.cnblogs.com/files/axqa/snowflakeCursor.js"></script>
+    <!-- 点击后出现烟花效果 -->
+    <script src="https://blog-static.cnblogs.com/files/axqa/cursor-effects.js"></script>
+ 
+</body>
+ 
+</html>
+
+
+
+
+
+
+
+
+<html>
+
+<head></head>
+<title>计算器</title>
+<link rel="shortcut icon" href="https://yos-is-good.netlify.app/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-01-04%20141051.png">
+<body>
+<script>document.addEventListener('visibilitychange',function(){
+if(document.visibilityState=='hidden'){normal_title=document.title;document.title='别走！！';}else{document.title=normal_title;}});</script>
+<script>document.addEventListener('visibilitychange',function(){if(document.visibilityState=='hidden'){<link rel="shortcut icon" href="https://yos-is-good.netlify.app/7.gif">;}else{document.title=normal_title;}});</script>
+    <div class="center">
+        <h1>炫酷计算器!</h1>
+        <a href="https://github.com/guuibayer/simple-calculator" target="_blank"><i class="fa fa-github"></i></a>
+        <form name="calculator">
+            <input type="button" id="clear" class="btn other" value="C">
+            <input type="text" id="display">
+            <br>
+            <input type="button" class="btn number" value="7" onclick="get(this.value);">
+            <input type="button" class="btn number" value="8" onclick="get(this.value);">
+            <input type="button" class="btn number" value="9" onclick="get(this.value);">
+            <input type="button" class="btn operator" value="+" onclick="get(this.value);">
+            <br>
+            <input type="button" class="btn number" value="4" onclick="get(this.value);">
+            <input type="button" class="btn number" value="5" onclick="get(this.value);">
+            <input type="button" class="btn number" value="6" onclick="get(this.value);">
+            <input type="button" class="btn operator" value="*" onclick="get(this.value);">
+            <br>
+            <input type="button" class="btn number" value="1" onclick="get(this.value);">
+            <input type="button" class="btn number" value="2" onclick="get(this.value);">
+            <input type="button" class="btn number" value="3" onclick="get(this.value);">
+            <input type="button" class="btn operator" value="-" onclick="get(this.value);">
+            <br>
+            <input type="button" class="btn number" value="0" onclick="get(this.value);">
+            <input type="button" class="btn operator" value="." onclick="get(this.value);">
+            <input type="button" class="btn operator" value="/" onclick="get(this.value);">
+            <input type="button" class="btn other" value="=" onclick="calculates();">
+        </form>
+    </div>
+    <style>
+        /* Basic Reset */
+        * {
+        	border: none;
+        	font-family: 'Open Sans', sans-serif;
+        	margin: 0;
+        	padding: 0;
+        }
+        body {
+        
+        }
+        .center {
+        	background-color: #fff;
+        	border-radius: 50%;
+        	height: 600px;
+        	margin: auto;
+        	width: 600px;
+        }
+        h1 {
+        	color: #495678;
+        	font-size: 30px;	
+        	margin-top: 20px;
+        	padding-top: 50px;
+        	display: block;
+        	text-align: center;
+        	text-decoration: none;
+        }
+        a {
+        	color: #495678;
+        	font-size: 30px;	
+        	display: block;
+        	text-align: center;
+        	text-decoration: none;
+        	padding-top: 20px;
+        }
+        form {
+        	background-color: #495678;
+        	box-shadow: 4px 4px #3d4a65;
+        	margin: 40px auto;
+        	padding: 40px 0 30px 40px;	
+        	width: 280px;
+        }
+        .btn {
+        	outline: none;
+        	cursor: pointer;
+        	font-size: 20px;
+        	height: 45px;
+        	margin: 5px 0 5px 10px;
+        	width: 45px;
+        }
+        .btn:first-child {
+        	margin: 5px 0 5px 10px;
+        }
+        .btn, #display, form {
+        	border-radius: 25px;
+        }
+        #display {
+        	outline: none;
+        	background-color: #98d1dc;
+        	box-shadow: inset 6px 6px 0px #3facc0;
+        	color: #dededc;
+        	font-size: 20px;
+        	height: 47px;
+        	text-align: right;
+        	width: 165px;
+        	padding-right: 10px;
+        	margin-left: 10px;
+        }
+        .number {
+        	background-color: #72778b;
+        	box-shadow: 0 5px #5f6680;
+        	color: #dededc;
+        }
+        .number:active {
+        	box-shadow: 0 2px #5f6680;
+          	-webkit-transform: translateY(2px);
+          	-ms-transform: translateY(2px);
+          	-moz-tranform: translateY(2px);
+          	transform: translateY(2px);
+        }
+        .operator {
+        	background-color: #dededc;
+        	box-shadow: 0 5px #bebebe;
+        	color: #72778b;
+        }
+        .operator:active {
+        	box-shadow: 0 2px #bebebe;
+          	-webkit-transform: translateY(2px);
+          	-ms-transform: translateY(2px);
+          	-moz-tranform: translateY(2px);
+          	transform: translateY(2px);
+        }
+        .other {
+        	background-color: #e3844c;
+        	box-shadow: 0 5px #e76a3d;
+        	color: #dededc;
+        }
+        .other:active {
+        	box-shadow: 0 2px #e76a3d;
+          	-webkit-transform: translateY(2px);
+          	-ms-transform: translateY(2px);
+          	-moz-tranform: translateY(2px);
+          	transform: translateY(2px);
+        }
+    </style>
+
+    <script>
+        /* limpa o display */ 
+        document.getElementById("clear").addEventListener("click", function() {
+        	document.getElementById("display").value = "";
+        });
+        /* recebe os valores */
+        function get(value) {
+        	document.getElementById("display").value += value; 
+        } 
+        
+        /* calcula */
+        function calculates() {
+        	var result = 0;
+        	result = document.getElementById("display").value;
+        	document.getElementById("display").value = "";
+        	document.getElementById("display").value = eval(result);
+        };
+    </script>
+</body>
+
+</html>
