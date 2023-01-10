@@ -1,0 +1,73 @@
+<!-- 作业专用html框架 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lime Start Page</title>
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/hello.css">
+</head>
+<body onload="time(),helloFloat()">
+    <div id="app">
+        <div id="bg" class="bg">
+            <img id="" alt="">
+        </div>
+        <div id="login">
+            <a href="./wait.html">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            </a>
+        </div>
+        <main id="main">
+            <div id="hello" class="hello"></div>
+            <div class="timecontainer">
+                <div class="time"></div>
+            </div>
+            <div class="search" id="searchbox">
+	 <form action="https://cn.bing.com/search" target="_self" method="get"  >
+                <input id="search" autocomplete="off" type="text" class="search-input" value="热门搜索：YOS" placeholder="搜索" name="q" autofocus>
+                <i class="search-icon"></i>
+ </form>
+            </div>
+            <div id="poem" class="hide">
+                <div class="poemBg"></div>
+                <span>「未觉池塘春草梦，阶前梧叶已秋声。」</span>
+                <p id="author">—— 偶成</p>
+                <button id="poemMenu" type="button">
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                </button>
+            </div>
+        </main>
+        <footer>
+            <div class="copy">
+                &copy; 2023
+            </div>
+            <div class="info">
+                <ul>
+                    <li>
+                        <a href="https://yangqiyuxyz.github.io" class="Ruoxin">Qiyu</a>
+                        <span>&</span>
+                        <a href="#" class="Shangzhen">Chenxi</a>
+                        <span>|</span>
+                        <a href="#">about</a>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+        <div id="switch">
+            <i id="switchBtn" class="fa fa-sun-o" aria-hidden="true"></i>
+        </div>
+    </div>
+
+</body>
+<script src="./js/hello.js"></script>
+
+
+</html>
